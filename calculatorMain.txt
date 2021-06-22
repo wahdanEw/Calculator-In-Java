@@ -1,0 +1,72 @@
+package Calc;
+import java.util.Scanner;
+
+public class calculatorMain {
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		Calculator check = new Calculator();
+		double num1 = 0,num2 = 0;
+		char choice;
+		boolean flag = true;
+		System.out.println("Enter Operator Calculator:" + "\n" + "-Press '+' for ADD Numbers" + "\n" + "-Press '-' for SUB Numbers" + "\n" + "-Press '*' for Mull Numbers" + "\n" + "-Press '/' for DIV Numbers" + "\n" + "-Press '^' for POW Numbers" + "\n" + "-Press 'p' for Check isPOW Numbers" + "\n" + "-Press 's' for Check Digits of Numbers");
+		choice = input.next().charAt(0);
+		
+		
+		while(flag)
+		{
+			flag = false;
+			if(choice == '+' || choice == '-' || choice == '*' || choice == '/'|| choice == '^'|| choice == 'p')
+			{
+				System.out.println("Enter 2 Number:");
+				num1 = input.nextDouble();
+				num2 = input.nextDouble();
+			}
+			switch(choice)
+			{
+				case '+':
+					check.add(num1, num2);
+					System.out.println("" + num1 + " + " + num2 + " = "+ check.getResult());
+					break;
+				case '-':
+					check.sub(num1, num2);
+					System.out.println("" + num1 + " - " + num2 + " = "+ check.getResult());
+					break;
+				case '*':
+					check.mull(num1, num2);
+					System.out.println("" + num1 + " * " + num2 + " = "+ check.getResult());
+					break;
+				case '/':
+					check.div(num1, num2);
+					System.out.println("" + num1 + " / " + num2 + " = "+ check.getResult());
+					break;
+				case '^':
+					check.pow(num1, num2);
+					System.out.println("" + num1 + " ^ " + num2 + " = "+ check.getResult());
+					break;
+				case 'p':
+					check.checkPow(num1,num2);
+					if(check.getResult() == 1)
+						System.out.println("" + num1 + " ispow " + num2 + " = True");
+					else
+						System.out.println("" + num1 + " ispow " + num2 + " = False");
+					break;
+				case 's':
+					System.out.println("Enter Number:");
+					int num = input.nextInt();
+					check.sumDigitsInNumber(num);
+					System.out.println("sum Digits in Number is = " + check.getResult());
+					break;
+				default:
+					System.out.println("Error - Invalid operator");
+					break;
+			}
+			System.out.println("Enter new Operator Calculator:"+ "\n" + "-For Exit press x");
+			choice = input.next().charAt(0);
+			flag = true;
+			if (choice == 'x')
+				flag = false;
+		}
+		input.close();
+	}
+}
